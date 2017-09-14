@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2017-09-14T11:12:38Z
+  labels:
+    run: haproxy-ingress
+  name: haproxy-ingress
+  namespace: default
+  resourceVersion: "8876"
+  selfLink: /api/v1/namespaces/default/services/haproxy-ingress
+  uid: 9e1f61a9-993d-11e7-800e-baa93c425e7e
+spec:
+  clusterIP: 10.3.176.112
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: port-1
+    nodePort: 32230
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: port-2
+    nodePort: 30365
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: port-3
+    nodePort: 30268
+    port: 1936
+    protocol: TCP
+    targetPort: 1936
+  selector:
+    run: haproxy-ingress
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
