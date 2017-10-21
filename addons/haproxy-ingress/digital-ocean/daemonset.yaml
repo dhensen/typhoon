@@ -44,8 +44,20 @@ spec:
               containerPort: 1936
               hostPort: 1936
             - name: health
-              containerPort: 10254
-              hostPort: 10254
+              containerPort: 10253
+              hostPort: 10253
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 10253
+              scheme: HTTP
+          livenessProbe:
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            httpGet:
+              path: /healthz
+              port: 10253
+              scheme: HTTP
       hostNetwork: true
       dnsPolicy: ClusterFirst
       restartPolicy: Always
